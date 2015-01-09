@@ -1,0 +1,802 @@
+<!DOCTYPE  HTML>
+<html manifest="manifest.appcache">
+
+<head>
+	<!--Disable zooming to prevent drag/drop operations from getting messed up on mobile-->
+	<meta name="viewport"  content="width=device-width, initial-scale=1.0, user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="mobile-web-app-capable" content="yes">
+	<!--Embed Google Font Monsterrat-->
+	<link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+	
+	<link rel="stylesheet" href="assets/css/style.css" type="text/css"/>
+
+	<script src="assets/js/jquery-2.1.1.min.js"></script>
+	<script src="assets/js/jquery-ui.min.js"></script>
+	<script src="assets/touch-punch/jquery.ui.touch-punch.min.js"></script>
+
+	<!-- Access to Phone Gap API -->
+	<script src="phonegap.js"></script>
+
+</head>
+
+<body>
+	<!-- INDEX -->
+	<div class="index-wrapper" style="display: block;">
+		<div class="index-content">
+			<div class="index-supertitle">WHAT MAKES A</div>
+			<div class="index-title">HEALTHY LAKE?</div>
+			<div class="btn-explore">Explore</div>
+		</div>
+	</div>
+	<!-- end of index -->
+
+	<!-- LAKE AREAS MAP -->
+	<div class="lakeareas-wrapper" style="display: none;">
+		<div class="lake-areas">
+			<p> Areas of a Lake Ecosystem </p>
+			<div class="watershed-btn"> </div>
+			<div class="nearshore-btn"> </div>
+			<div class="openwater-btn"> </div>
+			<div class="deepwater-btn"> </div>
+			<div class="explanation">
+				<p>Can you see signs of a healthy or unhealthy lake?</p>
+				<p>Choose one of the areas above to sort out images of a healthy or unhealthy lake.</p>
+			</div>
+		</div>
+	</div>
+	<!-- end of lake areas -->
+	<!-- WATERSHED -->
+	<div class="watershed-wrapper" style="display: none;">
+		<!--- Lake zones menu -->
+		<div class="header">
+			<!--- <div id="arrowFadeout" class="leftArrow" display="none"></div> -->
+			<div class="lakeZone" align="center">
+				<div class="title">WATERSHED</div>
+				<div class="subtitle">The land, far and near to the lake, where rain and snow falls then drains into the lake. You live in a watershed.</div>
+			</div>
+			<!--- <div class="rightArrow" display="none"></div> -->
+		</div>
+		<!--- Play area -->
+		<div class="content">
+			<div class="left-border">
+				<div class="header-unhealthy"></div>
+			</div>
+			<div class="center-border">
+				<div class="header-itdepends"></div>
+			</div>
+			<div class="right-border">
+				<div class="header-healthy"></div>
+			</div>
+			<div class="mask"></div>
+			<div class="board">
+			</div>
+			<div class="cardsBase">
+				<div id="watershed-to-home" class="homeBtn"></div>
+				<div class="resetBtn"></div>
+			</div>
+			<div id="droppable-whatershed" class="droppables-wrapper">
+			</div>
+		</div>
+		<!--- Cards -->
+		<div id="watershed-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/4wd-offroad.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Off-road vehicles</div>
+			<p id="hidden-text" style="display: none;"> It Depends: Off-highway vehicles (OHV) can cause soil compaction and erosion, harm vegetation and water quality, and threaten both plant and animal habitat </p>
+		</div>
+		<div id="watershed-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/Fertilizer.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Fertilizer</div>
+			<p id="hidden-text" style="display: none;"> It Depends: Too much fertilizer can run off into streams and lakes and cause algae to bloom </p>
+		</div>
+		<div id="watershed-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/USFS_WildFire.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Wildfires</div>
+			<p id="hidden-text" style="display: none;"> Unhealthy: Runaway wildfires tend to burn hot, resulting in a lot of smoke and ash, and when large areas are burned can result in erosion when rainstorms wash the unprotected soil into streams or lakes </p>
+		</div>
+		<div id="watershed-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/UCCE_PrescribedFire_100_0592.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Prescribed burns</div>
+			<p id="hidden-text" style="display: none;"> It Depends: Prescribed or controlled burns reduce the risk of wildfires and if properly managed can reduce impact of fires </p>
+		</div>
+		<div id="watershed-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/Thistles.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Invasive weeds</div>
+			<p id="hidden-text" style="display: none;"> Unhealthy: Never plant non-native invasive ornamental weeds on your property </p>
+		</div>
+		<div id="watershed-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/TERC_GeeseZephyrCove_AlisonToy.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Geese</div>
+			<p id="hidden-text" style="display: none;"> Unhealthy: Geese eat grass and poop nutrients that can wash into the lake and cause algal blooms </p>
+		</div>
+		<div id="watershed-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/DogPoopingOnBeach.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Dog pooping</div>
+			<p id="hidden-text" style="display: none;"> Unhealthy: Pet waste contains harmful bacteria and nutrients that can cause algal blooms if washed into the water However, if you pick up pet waste you can keep it out of our drinking water supply and prevent it from affecting lake health </p>
+		</div>
+		<div id="watershed-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/RakeAIS_Emily.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Eurasian watermilfoil pulled out of the water</div>
+			<p id="hidden-text" style="display: none;"> Unhealthy: This invasive plant can get caught on boat propellers and be transported into other waterbodies, where it can negatively affect the aquatic ecosystem </p>
+		</div>
+		<div id="watershed-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/Bike_FlumeTrail.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Mountain biking</div>
+			<p id="hidden-text" style="display: none;"> Healthy: Human-powered sports generally have less impact to the land, however, mountain bikers should stay on trails and stay out of sensitive lands </p>
+		</div>
+		<div id="watershed-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/Edgewood_GolfCourse.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Golf course</div>
+			<p id="hidden-text" style="display: none;"> It Depends: Golf courses require a large amount of fertilizer to maintain the expansive green grass areas, however, if managed properly, the impacts to water quality from the nutrient-rich fertilizer can be kept to a minimum </p>
+		</div>
+		<div id="watershed-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/HikingTahoeRimTrail.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Hiking on a trail</div>
+			<p id="hidden-text" style="display: none;"> Healthy: Human-powered sports generally have less impact to the land, however, hikers should stay on trail and stay out of sensitive lands </p>
+		</div>
+		<div id="watershed-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/jeep_stuck-in-meadow-laura-clarke.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Jeep tears rutts in a meadow</div>
+			<p id="hidden-text" style="display: none;"> Unhealthy: Vehicles driving through sensitive lands such as meadows can severely impact the land for years to come </p>
+		</div>
+		<div id="watershed-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/Oil Slick_1794.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Oil slick on road</div>
+			<p id="hidden-text" style="display: none;"> Unhealthy: Oil from the land can end up in the lake and be toxic to plants and animals in the water </p>
+		</div>
+		<div id="watershed-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/Water_Pollution_with_Trash_Disposal_of_Waste_at_the_Garbage_Beach.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Trash on the beach</div>
+			<p id="hidden-text" style="display: none;"> Unhealthy: Plastic can be harmful to fish, birds and other animals and should be removed and disposed of properly </p>
+		</div>
+		<div id="watershed-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/Greenfield_California.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Agriculture</div>
+			<p id="hidden-text" style="display: none;"> It Depends: Farm lands can require a large amount of fertilizer, however, if managed properly, the impacts to water quality from the nutrient-rich fertilizer can be kept to a minimum </p>
+		</div>
+		<div id="watershed-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/ThirstyCow.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Cows drinking out of stream</div>
+			<p id="hidden-text" style="display: none;"> Unhealthy: Cows grazing can cause erosion and cow poop can pollute the lake </p>
+		</div>
+		<div id="watershed-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/QuaggaOnBoat.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Quagga mussels on boat propeller</div>
+			<p id="hidden-text" style="display: none;"> Unhealthy: Quagga mussels are aquatic invasive species that would have devastating long-term effects on the lake and its streams. They must be kept out of Lake Tahoe! </p>
+		</div>
+		<div id="watershed-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/Erosion.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Erosion</div>
+			<p id="hidden-text" style="display: none;"> Unhealthy: Erosion brings sediment (fine particles) which can cloud the waters and reduce lake clarity </p>
+		</div>
+		<div id="watershed-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/RoadConstruction.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Paving the road</div>
+			<p id="hidden-text" style="display: none;"> It Depends: Paving roads reduces available land for water to soak in but is better than dirt roads </p>
+		</div>
+		<div id="watershed-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/lakefrontconstruction.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Construction near water's edge</div>
+			<p id="hidden-text" style="display: none;"> It Depends: Construction activities can harm the lake, but properly installed and maintained Best Management Practices (BMPs) can reduce the impact </p>
+		</div>
+		<div id="watershed-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/LadderfuelsUNCE.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Defensible space</div>
+			<p id="hidden-text" style="display: none;"> Healthy: Proper management of vegetation surrounding homes in the Tahoe Basin reduces the wildfire threat </p>
+		</div>
+		<div id="watershed-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/DirtRoadDust.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Dirt road</div>
+			<p id="hidden-text" style="display: none;"> Unhealthy: Driving on dirt compacts the soil, prevents plants from growing, and contributes to erosion and polluted run-off </p>
+		</div>
+		<div id="watershed-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/SquawBikePath.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Bike trail with bikers</div>
+			<p id="hidden-text" style="display: none;"> Healthy: Ride a bike, take public transportation, walk or carpool to reduce the number of vehicles on local roads </p>
+		</div>
+		<div id="watershed-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/TahoeTraffic.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Car traffic</div>
+			<p id="hidden-text" style="display: none;"> Unhealthy: Excessive automobile use degrades air quality, contributes to the decline in Tahoe's clarity from fine sediment pollution, and contributes to climate change which threatens the health of the entire lake ecosystem </p>
+		</div>
+		<div id="watershed-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/WoodBurning_MajesticProducts.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Clean burning wood stove</div>
+			<p id="hidden-text" style="display: none;"> Healthy: Replace open fireplaces and inefficient wood stoves, which create smoke and contribute to poor air quality, with clean-burning, high-efficiency wood stoves or other alternatives to reduce air pollution </p>
+		</div>
+		<div id="watershed-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/lake-tahoe-smokey.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Smoke trapped in inversion layer near lake</div>
+			<p id="hidden-text" style="display: none;"> Unhealthy: Smoke from open fireplaces and inefficient wood stoves can become trapped in an inversion layer and contribute to poor air quality. Replace open fireplaces and older inefficient wood stoves with clean-burning, high-efficiency wood stove or other alternatives to reduce air pollution. </p>
+		</div>
+		<div id="watershed-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/SmokeyStove.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Smoking wood stove</div>
+			<p id="hidden-text" style="display: none;"> Unhealthy: Open fireplaces and inefficient wood stoves create smoke and contribute to poor air quality. Replace with clean-burning, high-efficiency wood stove or other alternatives to decrease pollution. </p>
+		</div>
+		<div id="watershed-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/CleaningDriveway.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Washing your driveway</div>
+			<p id="hidden-text" style="display: none;"> Unhealthy: Don't waste water and wash fine sediment pollution into the road, storm drains or eventually the lake. Sweep your driveway and properly dispose of the fine sediment that reduces water clarity. </p>
+		</div>
+		<div id="watershed-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/sweeping-driveway.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Sweep driveway</div>
+			<p id="hidden-text" style="display: none;"> Healthy: Sweep your driveway instead of using a leaf blower (which blows fine sediment into the air) or hosing the fine sediment into the storm drain (which leads to the lake) </p>
+		</div>
+		<div id="watershed-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/Leaf-blower.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Leaf blower with dust cloud</div>
+			<p id="hidden-text" style="display: none;"> Unhealthy: Leaf blowers move the fine particles into the air, reducing air quality and visibility, and sending the fine particles into the lake, causing reduced water clarity. Sweep your driveway instead of using leaf blowers.  </p>
+		</div>
+		<div id="watershed-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/BaitBucket_JohnMcCullough.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Fishing gear and bait buckets</div>
+			<p id="hidden-text" style="display: none;"> It depends: Invasive species can be transported by fishing gear, bait buckets, and live bait wells.  </p>
+		</div>
+		<div id="watershed-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/Campfire.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Developed campground with fire pit</div>
+			<p id="hidden-text" style="display: none;"> Healthy: Buy a fire permit, use established fire pits, know fire restrictions, have fire pan/shovel/hose nearby </p>
+		</div>
+		<div id="watershed-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/AngoraFire_TimothyDRains.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Large wildfires such as the Angora Fire</div>
+			<p id="hidden-text" style="display: none;"> It Depends: Naturally occurring wildfires play an important role in nature, returning nutrients to the soil, removing diseased plants and harmful insects, and allowing for a new generation of seedlings to grow. Fire suppression without forest management can lead to the build-up of flammable debris and result in less frequent but much larger and more destructive wildfires. </p>
+		</div>
+		<div id="watershed-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/House_DefensibleSpace.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">House with defensible space</div>
+			<p id="hidden-text" style="display: none;"> Healthy: Tahoe homeowners have to "get defensive" with defensible space to help increase the chance the home can be saved if there is a wildfire </p>
+		</div>
+		<div id="watershed-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/UCCE_PrescribedFire_100_0592.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Prescribed fire</div>
+			<p id="hidden-text" style="display: none;"> It Depends: Prescribed or controlled burns can reduce the risk of wildfires and if properly managed can reduce negative impact of fires </p>
+		</div>
+		<div id="watershed-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/HouseBurn.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Forest fire destroying home without defensible space</div>
+			<p id="hidden-text" style="display: none;"> Unhealthy: Homes without defensible space cannot be safely protected by fire crews during a wildfire </p>
+		</div>
+		<div id="watershed-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/TERC_HealthyTrees_AlisonToy.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Forest thinning</div>
+			<p id="hidden-text" style="display: none;"> Healthy: Forests are thinned to provide more space between trees and slow down the spread of wildfires </p>
+		</div>
+		<div id="watershed-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/HealthyForest.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Healthy trees spaced widely in forest</div>
+			<p id="hidden-text" style="display: none;"> Healthy: In 'natural' forests, trees tend to be spaced out due to resource competition; Wider spacing spreads out the fuel load and slows down the spread of fires </p>
+		</div>
+		<div id="watershed-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/WildFire.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Overcrowded forest with crown fires</div>
+			<p id="hidden-text" style="display: none;"> Unhealthy: Overcrowded forests increase fuel loads and enhance the speed at which fire spreads </p>
+		</div>
+		<div id="watershed-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/TahoeLicensePlate_JeremyJones.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Tahoe license plate</div>
+			<p id="hidden-text" style="display: none;"> Healthy: Show your love and support for protecting Lake Tahoe by ordering or renewing your California or Nevada Lake Tahoe License Plate to benefit conservation and recreation projects in the basin </p>
+		</div>
+		<div id="watershed-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/TahoeLicensePlate_JuliaMancuso.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Tahoe license plate</div>
+			<p id="hidden-text" style="display: none;"> Healthy: Show your love and support for protecting Lake Tahoe by ordering or renewing your California or Nevada Lake Tahoe License Plate to benefit conservation and recreation projects in the basin </p>
+		</div>
+		<div id="watershed-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/SprinklerHead.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Watering a large lawn area</div>
+			<p id="hidden-text" style="display: none;"> It Depends: Large lawns require a lot of water and fertilizer to maintain and can result in nutrient pollution into the lake </p>
+		</div>
+		<div id="watershed-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/lawn.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Lawn</div>
+			<p id="hidden-text" style="display: none;"> It Depends: Small properly managed lawn areas can provide fire-safe defensible space areas around a home. Start in your own backyard with a lake-friendly landscape to keep Tahoe blue. </p>
+		</div>
+		<div id="watershed-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/TERC_NativePlantGarden_AlisonToy.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Native plant garden</div>
+			<p id="hidden-text" style="display: none;"> Healthy: Native plants require less fertilizer and water and can provide better habitat for native butterflies, bees,birds and other animals </p>
+		</div>
+		<div id="watershed-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/TERC_TCFieldStationDemoGarden_DaleHorchner.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Lake-friendly landscaping</div>
+			<p id="hidden-text" style="display: none;"> Healthy: Start in your own backyard with a lake-friendly landscape to keep Tahoe blue </p>
+		</div>
+		<div id="watershed-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/HouseBMPs_Flickr.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">House with Best Management Practices (BMPs)</div>
+			<p id="hidden-text" style="display: none;"> Healthy: Everyone has a role to play in protecting the Lake Tahoe Basin. Best Management Practices (BMPs) are measures taken to minimize soil erosion and capture polluted water before it enters Lake Tahoe.  </p>
+		</div>
+		<div id="watershed-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/HouseNoBMPs.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">House without Best Management Practices (BMPs)</div>
+			<p id="hidden-text" style="display: none;"> Unhealthy: Lake Tahoe property owners have a special responsibility to implement Best Management Practices (BMPs) on their property to capture polluted water and keep eroding soil from leaving the property. </p>
+		</div>
+		<div id="watershed-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/League_2014-07-05_VolunteerBeachCleanGroupPhoto.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Volunteer beach clean-up</div>
+			<p id="hidden-text" style="display: none;"> Healthy: Clean communities are healthy environments; Volunteer to clean up your local beaches and neighborhoods </p>
+		</div>
+		<div id="watershed-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/League_MemorialDayCleanup_DouglasHS.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Volunteer beach clean-up</div>
+			<p id="hidden-text" style="display: none;"> Healthy: Do your part! Get your hands dirty and volunteer with organizations that are actively restoring the Lake Tahoe Basin </p>
+		</div>
+		<div id="watershed-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/League_2014_KTRWB Cleanup_Commons Beach Tahoe City.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Trash on the beach</div>
+			<p id="hidden-text" style="display: none;"> Unhealthy: Trash negatively impacts the health and beauty of communities and can harm wildlife </p>
+		</div>
+		<div id="watershed-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/Trashinlake.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Trash in the lake</div>
+			<p id="hidden-text" style="display: none;"> Unhealthy: Trash found at any waterbody is both unsightly and harmful </p>
+		</div>
+		<div id="watershed-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/TERC_StreamMonitoring_AlisonToy.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Young students monitoring local stream health</div>
+			<p id="hidden-text" style="display: none;"> Healthy: Do your part! Get your hands dirty and volunteer with organizations that are actively restoring the Lake Tahoe Basin </p>
+		</div>
+		<div id="watershed-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/collectpoop.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Happy dog on leash, owner picking up after pet</div>
+			<p id="hidden-text" style="display: none;"> Healthy: Doo your duty… Pick up after your pet </p>
+		</div>
+		<div id="watershed-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/Scoop_your_poop.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Free-running dog with poop</div>
+			<p id="hidden-text" style="display: none;"> Unhealthy: Dog poop left on the ground can eventually reach the lake, reducing water quality and posing a health risk </p>
+		</div>
+		<div id="watershed-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/League_NoDumping.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Storm drain "No Dumping – Keep Tahoe Blue"</div>
+			<p id="hidden-text" style="display: none;"> It Depends: Never dump anything into a storm drain that you wouldn't want to drink… storm drains drain directly into the lake </p>
+		</div>
+		<div id="watershed-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/League_VolunteerStormdrainMarking.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Volunteers mark storm drains</div>
+			<p id="hidden-text" style="display: none;"> Healthy: Volunteers mark storm drains with informational signage to prevent any pollutant dumping </p>
+		</div>
+		<div id="watershed-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/Wiki_TahoeStormDrain.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Pollutants entering lake from a storm drain</div>
+			<p id="hidden-text" style="display: none;"> Unhealthy: Storm drains lead directly into the lake so never dump anything into a storm drain that you wouldn't want to drink </p>
+		</div>
+		<div id="watershed-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/TERC_BearBox_AlisonToy.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Bear proof garbage container</div>
+			<p id="hidden-text" style="display: none;"> Healthy: Use a bear-proof garbage enclosure. Never feed bears or leave food outside... sadly, a fed bear is a dead bear.  </p>
+		</div>
+
+	</div>
+	<!-- end of watershed -->
+	<!--////// NEARSHORE ///////////////////////////////////////////////////////////////////////////////////////-->
+		<div class="nearshore-wrapper" style="display: none;">
+			<!--- Lake zones menu -->
+			<div class="header">
+				<!--- <div class="leftArrow" display="none"></div> -->
+				<div class="lakeZone" align="center">
+					<div class="title">NEARSHORE</div>
+					<div class="subtitle">This area starts where the water meets the land and ends where there isn't enough sunlight for water plants to grow.</div>
+				</div>
+				<!--- <div class="rightArrow" display="none"></div> -->
+			</div>
+			<!--- Play area -->
+			<div class="content">
+				<div class="left-border">
+					<div class="header-unhealthy"></div>
+				</div>
+				<div class="center-border">
+					<div class="header-itdepends"></div>
+				</div>
+				<div class="right-border">
+					<div class="header-healthy"></div>
+				</div>
+				<div class="mask"></div>
+				<div class="board">
+				</div>
+				<div class="cardsBase">
+					<div id="watershed-to-home" class="homeBtn"></div>
+					<div class="resetBtn"></div>
+				</div>
+				<div id="droppable-nearshore" class="droppables-wrapper">
+				</div>
+			</div>
+			<!--- Cards -->		<div id="nearshore-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/algae-bloom.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Algae blooms</div>
+			<p id="hidden-text" style="display: none;"> Unhealthy: Algae blooms can harm fish in the lake by using up the oxygen in the water during decomposition </p>
+		</div>
+		<div id="nearshore-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/TERC_MarlaBayAlgaeBloom.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Algae blooms</div>
+			<p id="hidden-text" style="display: none;"> Unhealthy: Algae blooms can harm fish in the lake by using up the oxygen in the water during decomposition </p>
+		</div>
+		<div id="nearshore-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/TERC_PondweedAndBoatProps.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Aquatic invasive weeds</div>
+			<p id="hidden-text" style="display: none;"> Unhealthy: Invasive water plants (aquatic weeds) can outcompete native vegetation and multiply quickly </p>
+		</div>
+		<div id="nearshore-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/TERC_Pondweed.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Aquatic plants</div>
+			<p id="hidden-text" style="display: none;"> It Depends: Some aquatic plants are native and some are non-native and/or invasive </p>
+		</div>
+		<div id="nearshore-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/ducks_in_algae.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Ducks in algae</div>
+			<p id="hidden-text" style="display: none;"> It Depends: Ducks are native to the environment, however, more ducks mean more duck droppings which cause water pollution, create an unsanitary environment for human recreation, and lead to the spread of disease in the bird population </p>
+		</div>
+		<div id="nearshore-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/TERC_EurasianWatermilfoilTahoeKeys.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Eurasian watermilfoil</div>
+			<p id="hidden-text" style="display: none;"> Unhealthy: Eurasian watermilfoil is a non-native, invasive aquatic plant that can quickly spread, crowd out native plants, and interfere with recreation </p>
+		</div>
+		<div id="nearshore-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/League_CurlyleafPondweedInfestation.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Curlyleaf pondweed </div>
+			<p id="hidden-text" style="display: none;"> Unhealthy: Curlyleaf pondweed is a non-native, invasive aquatic plant that can quickly spread, crowd out native plants, and interfere with recreation </p>
+		</div>
+		<div id="nearshore-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/TERC_Pier_AlisonToy.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Piers</div>
+			<p id="hidden-text" style="display: none;"> It Depends: Piers can damage the shorezone area of a lake, but they can also provide valuable habitat for fish </p>
+		</div>
+		<div id="nearshore-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/TERC_Paddleboarding_AlisonToy.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Paddleboarding</div>
+			<p id="hidden-text" style="display: none;"> Healthy: Human-powered sports generally have less impact, however, even paddleboarders must be certain that they do not transport non-native invaders from other waterbodies </p>
+		</div>
+		<div id="nearshore-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/nearshore_paddle.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Paddleboarding near the shore</div>
+			<p id="hidden-text" style="display: none;"> Healthy: Human-powered sports generally have less impact, however, even paddleboarders must be certain that they do not transport non-native invaders from other waterbodies </p>
+		</div>
+		<div id="nearshore-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/TERC_kayaking_AlisonToy.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Kayaking</div>
+			<p id="hidden-text" style="display: none;"> Healthy: Human-powered sports generally have less impact, however, even kayakers must be certain that they do not transport non-native invaders from other waterbodies. Join "Tahoe Keepers" and learn how to properly self-inspect your personal watercraft. </p>
+		</div>
+		<div id="nearshore-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/Motorboat_ReinerKraft.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Motor boating near the shore</div>
+			<p id="hidden-text" style="display: none;"> It Depends: Waves from motor boats can cause shoreline erosion </p>
+		</div>
+		<div id="nearshore-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/TERC_MinnowsChimneyBeach_MattSmith.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Minnows</div>
+			<p id="hidden-text" style="display: none;"> Healthy: Minnows are found in the nearshore around rocks and under piers </p>
+		</div>
+		<div id="nearshore-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/USFS_BoatAndKayakInspection.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Kayaks and boats can spread aquatic invasive species</div>
+			<p id="hidden-text" style="display: none;"> Unhealthy: Even non-motorized watercraft can transport invasive species into a lake. All watercraft should be inspected before launching into Lake Tahoe. </p>
+		</div>
+		<div id="nearshore-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/wild-mussels.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Kayaks can spread invasive mussels too</div>
+			<p id="hidden-text" style="display: none;"> Unhealthy: Even non-motorized watercraft can transport invasive species into a lake. All watercraft should be inspected before launching into Lake Tahoe. </p>
+		</div>
+		<div id="nearshore-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/TERC_kayaking_AlisonToy.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Kayaking</div>
+			<p id="hidden-text" style="display: none;"> It Depends: Aquatic invasive species can be accidentally transported by non-motorized watercraft; Join Tahoe Keepers and self-inspect your personal watercraft </p>
+		</div>
+		<div id="nearshore-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/MusselsOnBeach_MarkHoffman.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Beach covered in invasive mussels</div>
+			<p id="hidden-text" style="display: none;"> Unhealthy: Invasive mussels can pile up along the shoreline making beaches impossible to walk on barefoot. Keep these invasive species out of Lake Tahoe. </p>
+		</div>
+		<div id="nearshore-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/Flickr_BoatLaunching.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Boat launching</div>
+			<p id="hidden-text" style="display: none;"> It Depends: Before launching your boat, always have it inspected to prevent the spread of aquatic invasive species </p>
+		</div>
+		<div id="nearshore-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/BoatInspections.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Boat inspection</div>
+			<p id="hidden-text" style="display: none;"> Healthy: Mandatory boat inspections help prevent the spread of invasive species that could have devastating long-term effects on Lake Tahoe </p>
+		</div>
+		<div id="nearshore-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/TRCD_PWC_Flush.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Personal watercraft inspection</div>
+			<p id="hidden-text" style="display: none;"> Healthy: All watercrafts must be inspected to help prevent the spread of invasive species that could have devastating long-term effects on Lake Tahoe </p>
+		</div>
+		<div id="nearshore-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/Wikimedia_Flyfishing.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Fly-fisherman</div>
+			<p id="hidden-text" style="display: none;"> Healthy: Fly-fishing usually has minimal impact, but invasive species can be transported by fishing gear, bait buckets, and live bait wells </p>
+		</div>
+		<div id="nearshore-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/Clean_Beach.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Walking on a sandy beach</div>
+			<p id="hidden-text" style="display: none;"> Healthy: Quagga mussel shells are very sharp… you don't want them on your beaches </p>
+		</div>
+		<div id="nearshore-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/quaggas-in-lake-mead.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Quagga mussels on the beach</div>
+			<p id="hidden-text" style="display: none;"> Unhealthy: Quagga mussel shells are sharp…you don't want them on your beaches </p>
+		</div>
+
+	</div>
+	<!-- end of nearshore -->
+<!--////// OPENWATER ///////////////////////////////////////////////////////////////////////////////////////-->
+	<div class="openwater-wrapper" style="display: none;">
+		<!--- Lake zones menu -->
+		<div class="header">
+			<!--- <div class="leftArrow" display="none"></div> -->
+			<div class="lakeZone" align="center">
+				<div class="title">OPEN WATER</div>
+				<div class="subtitle">The part of the lake where the water is too deep for water plants to grow.</div>
+			</div>
+			<!--- <div class="rightArrow" display="none"></div> -->
+		</div>
+		<!--- Play area -->
+		<div class="content">
+			<div class="left-border">
+				<div class="header-unhealthy"></div>
+			</div>
+			<div class="center-border">
+				<div class="header-itdepends"></div>
+			</div>
+			<div class="right-border">
+				<div class="header-healthy"></div>
+			</div>
+			<div class="mask"></div>
+			<div class="board">
+			</div>
+			<div class="cardsBase">
+				<div id="watershed-to-home" class="homeBtn"></div>
+				<div class="resetBtn"></div>
+			</div>
+			<div id="droppable-openwater" class="droppables-wrapper">
+			</div>
+		</div>
+		<!--- Cards -->
+		<div id="openwater-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/Wikimedia_Kayaking_Lake_Tahoe.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Kayaking in open water</div>
+			<p id="hidden-text" style="display: none;"> Healthy: Human-powered sports generally have less impact, however, kayakers must be certain that they do not transport aquatic invasive species from other waterbodies </p>
+		</div>
+		<div id="openwater-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/paddleboard_open_water.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Paddleboarding in open water</div>
+			<p id="hidden-text" style="display: none;"> Healthy: Human-powered sports generally have less impact, however, kayakers must be certain that they do not transport aquatic invasive species from other waterbodies </p>
+		</div>
+		<div id="openwater-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/speedboat.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Motor boating in open water</div>
+			<p id="hidden-text" style="display: none;"> It Depends: Only 4-stroke engines are allowed in Lake Tahoe to reduce the amount of toxic gas and oil that can get into the lake </p>
+		</div>
+		<div id="openwater-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/PlasticBagsInWater.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Plastic bags in water</div>
+			<p id="hidden-text" style="display: none;"> Unhealthy: Plastic can be harmful to fish, birds and other animals and should be removed </p>
+		</div>
+		<div id="openwater-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/TrashInWater.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Trash in water</div>
+			<p id="hidden-text" style="display: none;"> Unhealthy: Plastic can be harmful to fish, birds and other animals and should be removed </p>
+		</div>
+		<div id="openwater-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/TERC_RVBob_ResearchVessel.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Research vessel on the water</div>
+			<p id="hidden-text" style="display: none;"> Healthy: What gets measured gets done right Scientific research allows for wise public policy decisions </p>
+		</div>
+		<div id="openwater-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/Lake_trout_fish_underwater_close_up_head.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Lake trout</div>
+			<p id="hidden-text" style="display: none;"> It Depends: Lake trout were intentionally introduced into Lake Tahoe in the 1800s and outcompeted the native Lahontan cutthroat trout </p>
+		</div>
+		<div id="openwater-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/Rainbow_trout_underwater.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Other fish that live in pelagic zone</div>
+			<p id="hidden-text" style="display: none;"> It Depends: Native or non-native? The fish might be an essential part of the natural food web or they may be outcompeting native species for resources </p>
+		</div>
+		<div id="openwater-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/Diaptomus - 05821.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Zooplankton (copepods)</div>
+			<p id="hidden-text" style="display: none;"> Healthy: Essential to any lake food web Tiny organisms that feed off phytoplankton keeping the waters clear Food for fish </p>
+		</div>
+		<div id="openwater-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/sailboat.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Sailboat</div>
+			<p id="hidden-text" style="display: none;"> Healthy: Harnesses renewable wind energy while producing only minimal water and air pollution </p>
+		</div>
+		<div id="openwater-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/TERC_Blue_water_Lake_Tahoe.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Deep clear water</div>
+			<p id="hidden-text" style="display: none;"> Healthy: Water with minimal algae and sediment is clear and considered "oligotrophic", meaning it is very low in nutrients, algae and sediment </p>
+		</div>
+		<div id="openwater-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/BiofilmAlguesMorgat09.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Algal bloom in deep water</div>
+			<p id="hidden-text" style="display: none;"> Unhealthy: Large algal blooms deplete oxygen from the water and block sunlight  </p>
+		</div>
+		<div id="openwater-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/TahoeQueen_twogiraffe.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Ferries</div>
+			<p id="hidden-text" style="display: none;"> It Depends: As a form of mass transportation ferries can reduce the carbon footprint compared with everyone driving individually </p>
+		</div>
+		<div id="openwater-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/pollen on water_NickChill.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Pollen</div>
+			<p id="hidden-text" style="display: none;"> Healthy: Bright green pine pollen can be seen floating on the surface of the lake in spring. This is often confused with algal blooms or pollution but it is natural and safe for the lake. </p>
+		</div>
+		<div id="openwater-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/LakeMonster.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Lake monsters</div>
+			<p id="hidden-text" style="display: none;"> It Depends: Many lakes have a mythological creature, such as Tahoe Tessie, Champ, or Loch Ness Monster, which is thought to live in the deep waters </p>
+		</div>
+		<div id="openwater-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/lake-mist.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Evaporation</div>
+			<p id="hidden-text" style="display: none;"> It Depends: Various climate factors such as wind, humidity, and temperature can impact the rate of evaporation (or changing of water to water vapor) from the surface of the lake </p>
+		</div>
+		<div id="openwater-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/TERC_CathyPrestonUnderwaterTahoeBlue.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Scuba diving</div>
+			<p id="hidden-text" style="display: none;"> Healthy: Researchers study the underwater ecosystem of Lake Tahoe  </p>
+		</div>
+		<div id="openwater-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/OilInTheWater.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Oil slick on water</div>
+			<p id="hidden-text" style="display: none;"> Unhealthy: Oil from from leaking boats is toxic to plants and animals in the water </p>
+		</div>
+		<div id="openwater-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/Snow Falling_jan.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Snow falling on water</div>
+			<p id="hidden-text" style="display: none;"> It Depends: Precipitation is a natural part of the hydrologic cycle and replenishes the water supply However, snow is usually never pure water and any particulate matter/pollution in the airshed will be carried by the snow into the water </p>
+		</div>
+		<div id="openwater-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/TERC_SecchiDisk_HeatherSegale.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Research vessel with secchi disk measurement underway</div>
+			<p id="hidden-text" style="display: none;"> Healthy: What gets measured gets done right Scientific research allows for wise public policy decisions </p>
+		</div>
+
+	</div>
+	<!-- end of openwater -->
+<!--////// DEEPWATER ///////////////////////////////////////////////////////////////////////////////////////-->
+	<div class="deepwater-wrapper" style="display: none;">
+		<!--- Lake zones menu -->
+		<div class="lg-header">
+			<!--- <div class="leftArrow" display="none"></div> -->
+			<div class="lakeZone" align="center">
+				<div class="title">DEEP WATER / LAKE BOTTOM</div>
+				<div class="subtitle">The deep water gets less than 1% of sunlight and the lake bottom extends from the shore to the very bottom of the lake. It's where the sediment gathers.</div>
+			</div>
+			<!---  <div id="arrowFadeout" class="rightArrow" display="none"></div> -->
+		</div>
+		<!--- Play area -->
+		<div class="content">
+			<div class="left-border">
+				<div class="header-unhealthy"></div>
+			</div>
+			<div class="center-border">
+				<div class="header-itdepends"></div>
+			</div>
+			<div class="right-border">
+				<div class="header-healthy"></div>
+			</div>
+			<div class="mask"></div>
+			<div class="board">
+			</div>
+			<div class="cardsBase">
+				<div id="watershed-to-home" class="homeBtn"></div>
+				<div class="resetBtn"></div>
+			</div>
+			<div id="droppable-deepwater" class="droppables-wrapper">
+			</div>
+		</div>
+		<!--- Cards -->
+		<div id="deepwater-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/TERC_crayfish.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Crayfish</div>
+			<p id="hidden-text" style="display: none;"> Unhealthy: Non-native crayfish populations have increased and compete with native species for resources </p>
+		</div>
+		<div id="deepwater-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/TERC_CrayfishFace.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Crayfish</div>
+			<p id="hidden-text" style="display: none;"> Unhealthy: Non-native crayfish populations have increased and compete with native species for resources </p>
+		</div>
+		<div id="deepwater-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/TERC_SandySubstrate.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Sandy shallow waters</div>
+			<p id="hidden-text" style="display: none;"> Healthy: Sandy nearshore habitat is found in some regions around the lake </p>
+		</div>
+		<div id="deepwater-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/TERC_NearshoreRocks.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Rocky shallow waters</div>
+			<p id="hidden-text" style="display: none;"> Healthy: Rocky nearshore habitat is found in some regions around the lake </p>
+		</div>
+		<div id="deepwater-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/TERC_DecomposedGraniteLakeBottom.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Decomposed granite</div>
+			<p id="hidden-text" style="display: none;"> Healthy: Decomposed granite (broken down granite rock) is found on the lake bottom in some regions around the lake </p>
+		</div>
+		<div id="deepwater-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/TERC_SpectralImagingCameraSubstrate.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Sediment at bottom of the lake</div>
+			<p id="hidden-text" style="display: none;"> Healthy: Sediment that has been accumulating since the lake was first formed is found at the bottom of the lake </p>
+		</div>
+		<div id="deepwater-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/TERC_BrantAllenSamplingPeriphyton.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Attached algae on rocks</div>
+			<p id="hidden-text" style="display: none;"> It Depends: Algae attached to rocks can be a natural part of the ecosystem, but excessive algae can also be an indicator of nutrient pollution in the water </p>
+		</div>
+		<div id="deepwater-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/TERC_BurntCedarBeach2009_JenSchmidt.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Attached algae on rocks</div>
+			<p id="hidden-text" style="display: none;"> It Depends: Algae attached to rocks can be a natural part of the ecosystem, but excessive algae can also be an indicator of nutrient pollution in the water </p>
+		</div>
+		<div id="deepwater-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/TERC_AsianClamsWithZygnimaElkPoint2008.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Invasive clam shells</div>
+			<p id="hidden-text" style="display: none;"> Unhealthy: Non-native Asian clams are increasing in population, spreading to other areas around the lake. Their beds release high levels of phosphates resulting in unsightly and unnatural algal growth </p>
+		</div>
+		<div id="deepwater-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/TERC_ClamBarrier.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Clam mats on lake bottom</div>
+			<p id="hidden-text" style="display: none;"> Rubber mats have been put on the bottom of the lake to manage the growing non-native Asian clam populations </p>
+		</div>
+		<div id="deepwater-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/Fifi_shipwreck_wikicommons.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Boat wreck at bottom of the lake</div>
+			<p id="hidden-text" style="display: none;"> It Depends: Boat wrecks can provide habitat for fish and other species, however, pollutants such as gasoline can leach into the water as the boat breaks down </p>
+		</div>
+		<div id="deepwater-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/MayflyLarva.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Macroinvertebrates</div>
+			<p id="hidden-text" style="display: none;"> Healthy: Small "bugs" called macroinvertebrates found in sediment are an important part of the food web </p>
+		</div>
+		<div id="deepwater-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/Mysis-inwater.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Mysis shrimp on lake bottom</div>
+			<p id="hidden-text" style="display: none;"> It Depends: Mysis shrimp are non-native and have eaten many of the native zooplankton in Lake Tahoe. Their intentional introduction has caused many unintentional and unforeseen problems. </p>
+		</div>
+		<div id="deepwater-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/tired-cocoabiscuit.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Tires</div>
+			<p id="hidden-text" style="display: none;"> Unhealthy: Old tires found at the bottom of the lake should be removed because they break down into chemicals which can harm the plants and animals in the lake </p>
+		</div>
+		<div id="deepwater-card" class="card" style="display: none;">
+			<img id="pic" class="pic" src="card_images/TrashOnLakeBottom_KarenLaFarge-Unrein.png"  width="280" height="140">
+			<div id= "title" class="title" align="center">Trash on lake bottom</div>
+			<p id="hidden-text" style="display: none;"> Unhealthy: Trash found at the bottom of the lake is both unsightly and harmful </p>
+		</div>
+
+	</div>
+	<!-- end of deepwater -->
+<div class="on-top" style="display: none;">
+		<div class="pop-up">
+			<img class="close-btn"> </img>
+			<p class="popup-title" style="display: block;"> </p>
+			<img class="popup-image" src="" style="display: block;"> </img>
+			<p class="popup-description" style="display: block;"> </p>
+			<p class="would-sort-dif">How might you sort this differently now?</p>
+			<!-- <p class="double-tap-to">Double tap the card to see this again.</p> -->
+		</div>
+	</div>
+
+	<div class="tutorial" style="display: none;">
+		<div class="container">
+			<div class="message">
+				<div class= "close" id="tutorial-close"> x </div>
+				<p>Drag and drop each picture to indicate whether it shows a healthy, unhelthy or "it depends" lake.</p>
+				<p>We encourage you to discuss and re-sort the cards.</p>
+			</div>
+			<div class="tips"></div>
+		</div>
+	</div>
+
+<script src="assets/zepto/zepto.min.js"></script>
+<script src="assets/zepto/fx_methods.js"></script>
+<script src="assets/zepto/fx.js"></script>
+<script src="assets/zepto/touch.js"></script>
+<script src="assets/js/app_controller.js"></script>
+</body>
+
+
+</html>
