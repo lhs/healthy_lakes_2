@@ -4,6 +4,9 @@ body {
 	-webkit-user-select: none;
 	overflow-x: hidden;
 	-webkit-overflow-x: hidden;
+	overflow-y: hidden;
+	-webkit-overflow-y: hidden;
+	overflow:hidden;
 	outline: none;
 	-webkit-outline: none;
 }
