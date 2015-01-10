@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+    <widget xmlns   = "http://www.w3.org/ns/widgets"
+        xmlns:gap   = "http://phonegap.com/ns/1.0"
+        id          = "org.lawrencehallofscience.*"
+        versionCode = "10" 
+        version     = "1.0.0" >
+
+    <!-- versionCode is optional and Android only -->
+
+    <name>Healthy Lakes Interactive</name>
+
+    <description>
+        Healthy Lakes Interactive
+    </description>
+
+    <author>
+        Lawrence Hall of Science
+    </author>
+
+</widget>
+
+<preference name="DisallowOverscroll" value="true" />
