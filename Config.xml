@@ -12,10 +12,9 @@
         A decision-based interactive on whether images are indicative of a healthy or unhealthy lake
     </description>
 
-    <author href="http://www.lawrencehallofscience.org/">
+    <author>
         Lawrence Hall of Science
     </author>
 
-    <preference name="DisallowOverscroll" value="true" />
 
 </widget>
