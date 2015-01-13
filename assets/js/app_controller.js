@@ -44,7 +44,7 @@ Zepto(document).ready(function()
 	console.log(tutorialShown);
 
 	// Index page, buttom that goes to lake areas map
-	Zepto(".btn-explore").bind("click tap", function(){
+	Zepto(".btn-explore").bind("click", function(){
 		goToLakeAreas();
 	});
 	// Lake areas page, buttom that goes to watershed page
