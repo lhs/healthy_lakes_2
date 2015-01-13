@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!-- config.xml reference: https://build.phonegap.com/docs/config-xml -->
-<widget xmlns     = "http://www.w3.org/ns/widgets"
-        xmlns:gap = "http://phonegap.com/ns/1.0"
-        id        = "org.lawrencehallofscience.*"
-        version   = "1.0.0">
+<widget xmlns   = "http://www.w3.org/ns/widgets"
+    xmlns:gap   = "http://phonegap.com/ns/1.0"
+    id          = "org.lawrencehallofscience.*"
+    versionCode = "10" 
+    version     = "1.0.0" >
+
 
     <name>Healthy Lakes</name>
 
@@ -18,12 +20,8 @@
 
 
     <!-- Customize your app and platform with the preference element. -->
-    <preference name="phonegap-version"           value="3.5.0" />          <!-- all: current version of PhoneGap -->
     <preference name="orientation"                value="landscape" />        <!-- all: default means both landscape and portrait are enabled -->
-    <preference name="target-device"              value="universal" />      <!-- all: possible values handset, tablet, or universal -->
-    <preference name="fullscreen"                 value="true" />           <!-- all: hides the status bar at the top of the screen -->
-    <preference name="webviewbounce"              value="false" />           <!-- ios: control whether the screen 'bounces' when scrolled beyond the top -->
-    <preference name="DisallowOverscroll" value="true" />                   <!-- Prevent scrolling of app -->
+    <preference name="webviewbounce"              value="false" />           <!-- ios: control whether the screen 'bounces' when scrolled beyond the top -->    
     <preference name="UIWebViewBounce" value="false" />
-    <preference name="detect-data-types"          value="true" />           <!-- ios: controls whether data types (such as phone no. and dates) are automatically turned into links by the system -->
+
 </widget>
