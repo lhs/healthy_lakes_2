@@ -15,5 +15,6 @@
         Lawrence Hall of Science
     </author>
 
+    <preference name="DisallowOverscroll" value="true" />
 
 </widget>
