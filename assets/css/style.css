@@ -11,6 +11,11 @@ body {
 	-webkit-outline: none;
 }
 
+/* ---- Optimizing dragging images speed on iPad **/
+.draggable-image {
+  -webkit-transform: translate3d(0px,0px,0px);
+}
+
 /*--------------------------------- INDEX page -------------------------------------------------*/
 .index-wrapper {
 	width: 100%;
@@ -738,6 +743,8 @@ body {
     border: 1px solid #000;
     border-radius: 10px;
     background-color: #282828;
+    -webkit-transform: translate3d(0px,0px,0px);
+
 }
 
 .cardDropped {
@@ -763,6 +770,7 @@ body {
 	width: 280px;
 	height: 140px;
 	border: 1px solid #000;
+
 }
 
 .card .title, .cardDropped .title {
