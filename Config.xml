@@ -16,5 +16,6 @@
     </author>
 
     <preference name="DisallowOverscroll" value="true" />
+    <preference name="orientation" value="landscape" /> 
 
 </widget>
