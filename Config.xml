@@ -15,7 +15,16 @@
         Lawrence Hall of Science
     </author>
 
-    <preference name="DisallowOverscroll" value="true" />
-    <preference name="orientation" value="landscape" /> 
+    <preference name="DisallowOverscroll" value="true" /> <!-- Preventing scrolling on app -->
+    <preference name="orientation" value="landscape" />  <!-- Only allow landscape viewing -->
+
+
+    <!-- Adding app icon for iOS and android -->
+    <icon src="/icons/Icon.png" />
+    <icon src="/icons/Icon-Small-50.png"             gap:platform="ios"        width="50" height="50" />
+    <icon src="/icons/Icon-72.png"                   gap:platform="ios"        width="72" height="72" />
+    <icon src="/icons/Icon-Small-50@2x.png"          gap:platform="ios"        width="100" height="100" />
+    <icon src="/icons/Icon-72@2x.png"                gap:platform="ios"        width="144" height="144" />
+ 
 
 </widget>
