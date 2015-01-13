@@ -770,6 +770,8 @@ body {
 	width: 280px;
 	height: 140px;
 	border: 1px solid #000;
+	-webkit-transform: translate3d(0px,0px,0px);
+
 
 }
 
