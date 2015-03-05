@@ -15,13 +15,6 @@
 	<script src="assets/js/jquery-ui.min.js"></script>
 	<script src="assets/touch-punch/jquery.ui.touch-punch.min.js"></script>
 	<script src="phonegap.js"></script>
-	<script src="assets/js/fastclick.js"></script>
-
-	<script type="text/javascript">
-		$(function() {
-			FastClick.attach(document.body);
-		});
-	</script>
 
 </head>
 
@@ -58,7 +51,7 @@
 			<!--- <div id="arrowFadeout" class="leftArrow" display="none"></div> -->
 			<div class="lakeZone" align="center">
 				<div class="title">WATERSHED</div>
-				<div class="subtitle">The land, both far and near, where rain and snow falls then drains into a particular body of water such as a lake. We all live in a watershed and what happens on the surround land affects the health of the waterbody. </div>
+				<div class="subtitle">The land, far and near to the lake, where rain and snow falls then drains into the lake. You live in a watershed.</div>
 			</div>
 			<!--- <div class="rightArrow" display="none"></div> -->
 		</div>
@@ -92,11 +85,11 @@
 		<div id="watershed-card" class="card" style="display: none;">
 			<img id="pic" class="pic" src="card_images/Fertilizer.png"  width="280" height="140">
 			<div id= "title" class="title" align="center">Fertilizer</div>
-			<p id="hidden-text" style="display: none;"> It Depends: Too much fertilizer can run off into streams and lakes and cause algae to bloom </p>
+			<p id="hidden-text" style="display: none;"> It Depends: Too much fertilizer can run off into streams and lakes and cause algae to bloom, but using fertilizer in small accurate amounts low in phosphorus can create lush plants without causing a negative impact on the lake.   </p>
 		</div>
 		<div id="watershed-card" class="card" style="display: none;">
 			<img id="pic" class="pic" src="card_images/USFS_WildFire.png"  width="280" height="140">
-			<div id= "title" class="title" align="center">Wildfires</div>
+			<div id= "title" class="title" align="center">Runaway Wildfires</div>
 			<p id="hidden-text" style="display: none;"> Unhealthy: Runaway wildfires tend to burn hot, resulting in a lot of smoke and ash, and when large areas are burned can result in erosion when rainstorms wash the unprotected soil into streams or lakes </p>
 		</div>
 		<div id="watershed-card" class="card" style="display: none;">
@@ -261,7 +254,7 @@
 		</div>
 		<div id="watershed-card" class="card" style="display: none;">
 			<img id="pic" class="pic" src="card_images/HouseBurn.png"  width="280" height="140">
-			<div id= "title" class="title" align="center">Forest fire destroying home without defensible space</div>
+			<div id= "title" class="title" align="center">Forest fire and home without defensible space</div>
 			<p id="hidden-text" style="display: none;"> Unhealthy: Homes without defensible space cannot be safely protected by fire crews during a wildfire </p>
 		</div>
 		<div id="watershed-card" class="card" style="display: none;">
@@ -292,7 +285,7 @@
 		<div id="watershed-card" class="card" style="display: none;">
 			<img id="pic" class="pic" src="card_images/SprinklerHead.png"  width="280" height="140">
 			<div id= "title" class="title" align="center">Watering a large lawn area</div>
-			<p id="hidden-text" style="display: none;"> It Depends: Large lawns require a lot of water and fertilizer to maintain and can result in nutrient pollution into the lake </p>
+			<p id="hidden-text" style="display: none;"> It Depends: Large lawns require a lot of water and fertilizer to maintain and can result in nutrient pollution into the lake, however a well placed lawn can reduce erosion. </p>
 		</div>
 		<div id="watershed-card" class="card" style="display: none;">
 			<img id="pic" class="pic" src="card_images/lawn.png"  width="280" height="140">
@@ -311,12 +304,12 @@
 		</div>
 		<div id="watershed-card" class="card" style="display: none;">
 			<img id="pic" class="pic" src="card_images/HouseBMPs_Flickr.png"  width="280" height="140">
-			<div id= "title" class="title" align="center">House with Best Management Practices (BMPs)</div>
+			<div id= "title" class="title" align="center">House with Best Management Practices</div>
 			<p id="hidden-text" style="display: none;"> Healthy: Everyone has a role to play in protecting the Lake Tahoe Basin. Best Management Practices (BMPs) are measures taken to minimize soil erosion and capture polluted water before it enters Lake Tahoe.  </p>
 		</div>
 		<div id="watershed-card" class="card" style="display: none;">
 			<img id="pic" class="pic" src="card_images/HouseNoBMPs.png"  width="280" height="140">
-			<div id= "title" class="title" align="center">House without Best Management Practices (BMPs)</div>
+			<div id= "title" class="title" align="center">House without Best Management Practices</div>
 			<p id="hidden-text" style="display: none;"> Unhealthy: Lake Tahoe property owners have a special responsibility to implement Best Management Practices (BMPs) on their property to capture polluted water and keep eroding soil from leaving the property. </p>
 		</div>
 		<div id="watershed-card" class="card" style="display: none;">
@@ -346,7 +339,7 @@
 		</div>
 		<div id="watershed-card" class="card" style="display: none;">
 			<img id="pic" class="pic" src="card_images/collectpoop.png"  width="280" height="140">
-			<div id= "title" class="title" align="center">Happy dog on leash, owner picking up after pet</div>
+			<div id= "title" class="title" align="center">Happy dog on leash, picking up after pet</div>
 			<p id="hidden-text" style="display: none;"> Healthy: Doo your duty… Pick up after your pet </p>
 		</div>
 		<div id="watershed-card" class="card" style="display: none;">
@@ -356,7 +349,7 @@
 		</div>
 		<div id="watershed-card" class="card" style="display: none;">
 			<img id="pic" class="pic" src="card_images/League_NoDumping.png"  width="280" height="140">
-			<div id= "title" class="title" align="center">Storm drain "No Dumping – Keep Tahoe Blue"</div>
+			<div id= "title" class="title" align="center">Storm drain "No Dumping. Keep Tahoe Blue"</div>
 			<p id="hidden-text" style="display: none;"> It Depends: Never dump anything into a storm drain that you wouldn't want to drink… storm drains drain directly into the lake </p>
 		</div>
 		<div id="watershed-card" class="card" style="display: none;">
@@ -384,7 +377,7 @@
 				<!--- <div class="leftArrow" display="none"></div> -->
 				<div class="lakeZone" align="center">
 					<div class="title">NEARSHORE</div>
-					<div class="subtitle">The shallow area around the edge of the lake where the water meets the land. The &quot;nearshore&quot; is where most people interact with the lake.</div>
+					<div class="subtitle">This area starts where the water meets the land and ends where there isn't enough sunlight for water plants to grow.</div>
 				</div>
 				<!--- <div class="rightArrow" display="none"></div> -->
 			</div>
@@ -485,11 +478,6 @@
 			<p id="hidden-text" style="display: none;"> Unhealthy: Even non-motorized watercraft can transport invasive species into a lake. All watercraft should be inspected before launching into Lake Tahoe. </p>
 		</div>
 		<div id="nearshore-card" class="card" style="display: none;">
-			<img id="pic" class="pic" src="card_images/TERC_kayaking_AlisonToy.png"  width="280" height="140">
-			<div id= "title" class="title" align="center">Kayaking</div>
-			<p id="hidden-text" style="display: none;"> It Depends: Aquatic invasive species can be accidentally transported by non-motorized watercraft; Join Tahoe Keepers and self-inspect your personal watercraft </p>
-		</div>
-		<div id="nearshore-card" class="card" style="display: none;">
 			<img id="pic" class="pic" src="card_images/MusselsOnBeach_MarkHoffman.png"  width="280" height="140">
 			<div id= "title" class="title" align="center">Beach covered in invasive mussels</div>
 			<p id="hidden-text" style="display: none;"> Unhealthy: Invasive mussels can pile up along the shoreline making beaches impossible to walk on barefoot. Keep these invasive species out of Lake Tahoe. </p>
@@ -512,7 +500,7 @@
 		<div id="nearshore-card" class="card" style="display: none;">
 			<img id="pic" class="pic" src="card_images/Wikimedia_Flyfishing.png"  width="280" height="140">
 			<div id= "title" class="title" align="center">Fly-fisherman</div>
-			<p id="hidden-text" style="display: none;"> Healthy: Fly-fishing usually has minimal impact, but invasive species can be transported by fishing gear, bait buckets, and live bait wells </p>
+			<p id="hidden-text" style="display: none;"> It Depends: Fly-fishing usually has minimal impact, but invasive species can be transported by fishing gear, bait buckets, and live bait wells </p>
 		</div>
 		<div id="nearshore-card" class="card" style="display: none;">
 			<img id="pic" class="pic" src="card_images/Clean_Beach.png"  width="280" height="140">
@@ -534,7 +522,7 @@
 			<!--- <div class="leftArrow" display="none"></div> -->
 			<div class="lakeZone" align="center">
 				<div class="title">OPEN WATER</div>
-				<div class="subtitle">Away from the shores of the lake, the &quot;open water&quot; includes the upper sunlit portion and the dark, deep waters of the lake.</div>
+				<div class="subtitle">The part of the lake where the water is too deep for water plants to grow.</div>
 			</div>
 			<!--- <div class="rightArrow" display="none"></div> -->
 		</div>
@@ -670,7 +658,7 @@
 			<!--- <div class="leftArrow" display="none"></div> -->
 			<div class="lakeZone" align="center">
 				<div class="title">DEEP WATER / LAKE BOTTOM</div>
-				<div class="subtitle">Also known as the &quot;benthic zone&quot;, the lake bottom can be sandy, rocky, muddy or weedy and extends from the lake shore to the deepest regions of the lake.</div>
+				<div class="subtitle">The deep water gets less than 1% of sunlight and the lake bottom extends from the shore to the very bottom of the lake. It's where the sediment gathers.</div>
 			</div>
 			<!---  <div id="arrowFadeout" class="rightArrow" display="none"></div> -->
 		</div>
@@ -744,7 +732,7 @@
 		<div id="deepwater-card" class="card" style="display: none;">
 			<img id="pic" class="pic" src="card_images/TERC_ClamBarrier.png"  width="280" height="140">
 			<div id= "title" class="title" align="center">Clam mats on lake bottom</div>
-			<p id="hidden-text" style="display: none;"> Rubber mats have been put on the bottom of the lake to manage the growing non-native Asian clam populations </p>
+			<p id="hidden-text" style="display: none;"> Healthy: Rubber mats have been put on the bottom of the lake to manage the growing non-native Asian clam populations </p>
 		</div>
 		<div id="deepwater-card" class="card" style="display: none;">
 			<img id="pic" class="pic" src="card_images/Fifi_shipwreck_wikicommons.png"  width="280" height="140">
@@ -789,7 +777,7 @@
 		<div class="container">
 			<div class="message">
 				<div class= "close" id="tutorial-close"> x </div>
-				<p>Drag and drop each picture to indicate whether it shows a healthy, unhealthy or "it depends" lake.</p>
+				<p>Drag and drop each picture to indicate whether it shows a healthy, unhelthy or "it depends" lake.</p>
 				<p>We encourage you to discuss and re-sort the cards.</p>
 			</div>
 			<div class="tips"></div>
