@@ -11,6 +11,12 @@ lakebottom = []
 # urls to cache file
 image_urls = []
 
+def escape_special_char(des): 
+    #des = des.replace("&", "&amp;")
+    des = des.replace("...", "&hellip;")
+    des = des.replace('"', "&quot;")
+    return des 
+
 # Loop through and create all the text
 with open('data.csv', 'r') as f:
     reader = csv.reader(f)
@@ -23,7 +29,9 @@ with open('data.csv', 'r') as f:
                 div = '\t\t<div id="watershed-card" class="card" style="display: none;">'
                 picture = '\t\t\t<img id="pic" class="pic" src="'+imageUrl+'"  width="280" height="140">'
                 title = '\t\t\t<div id= "title" class="title" align="center">'+ row[0] +'</div>'
-                description = '\t\t\t<p id="hidden-text" style="display: none;"> '+row[1]+' </p>'
+                description = '\t\t\t<p id="hidden-text" style="display: none;"> ' + escape_special_char(row[1]) + ' </p>'
+
+                #description = '\t\t\t<p id="hidden-text" style="display: none;"> '+row[1]+' </p>'
                 close_div = '\t\t</div>'
                 card = div+'\n'+picture+'\n'+title+'\n'+description+'\n'+close_div+'\n'
                 watershed.append(card)
@@ -31,7 +39,7 @@ with open('data.csv', 'r') as f:
                 div = '\t\t<div id="nearshore-card" class="card" style="display: none;">'
                 picture = '\t\t\t<img id="pic" class="pic" src="'+imageUrl+'"  width="280" height="140">'
                 title = '\t\t\t<div id= "title" class="title" align="center">'+ row[0] +'</div>'
-                description = '\t\t\t<p id="hidden-text" style="display: none;"> '+row[1]+' </p>'
+                description = '\t\t\t<p id="hidden-text" style="display: none;"> '+ escape_special_char(row[1]) +' </p>'
                 close_div = '\t\t</div>'
                 card = div+'\n'+picture+'\n'+title+'\n'+description+'\n'+close_div+'\n'
                 nearshore.append(card)
@@ -39,7 +47,7 @@ with open('data.csv', 'r') as f:
                 div = '\t\t<div id="openwater-card" class="card" style="display: none;">'
                 picture = '\t\t\t<img id="pic" class="pic" src="'+imageUrl+'"  width="280" height="140">'
                 title = '\t\t\t<div id= "title" class="title" align="center">'+ row[0] +'</div>'
-                description = '\t\t\t<p id="hidden-text" style="display: none;"> '+row[1]+' </p>'
+                description = '\t\t\t<p id="hidden-text" style="display: none;"> '+ escape_special_char(row[1])+' </p>'
                 close_div = '\t\t</div>'
                 card = div+'\n'+picture+'\n'+title+'\n'+description+'\n'+close_div+'\n'
                 openwater.append(card)
@@ -47,10 +55,13 @@ with open('data.csv', 'r') as f:
                 div = '\t\t<div id="deepwater-card" class="card" style="display: none;">'
                 picture = '\t\t\t<img id="pic" class="pic" src="'+imageUrl+'"  width="280" height="140">'
                 title = '\t\t\t<div id= "title" class="title" align="center">'+ row[0] +'</div>'
-                description = '\t\t\t<p id="hidden-text" style="display: none;"> '+row[1]+' </p>'
+                description = '\t\t\t<p id="hidden-text" style="display: none;"> '+escape_special_char(row[1])+' </p>'
                 close_div = '\t\t</div>'
                 card = div+'\n'+picture+'\n'+title+'\n'+description+'\n'+close_div+'\n'
                 lakebottom.append(card)
+
+
+
 
 # Open all the strings up
 start = open('doc_parts/start.html', 'r')
